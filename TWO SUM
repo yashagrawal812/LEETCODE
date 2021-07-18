@@ -1,23 +1,25 @@
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        int n = nums.length;
-        int i = 0;
-        int j = n - 1;
-        int[][] numsWithIndex = new int[n][2];
-        for (int k = 0; k < n; k++) {
-            numsWithIndex[k][0] = nums[k];
-            numsWithIndex[k][1] = k;
-        }
-        Arrays.sort(numsWithIndex, Comparator.comparingInt(a -> a[0]));
-        while (i < j) {
-            if (numsWithIndex[i][0] + numsWithIndex[j][0] == target) {
-                return new int[]{numsWithIndex[i][1], numsWithIndex[j][1]};
-            } else if (numsWithIndex[i][0] + numsWithIndex[j][0] < target) {
-                i++;
-            } else {
-                j--;
+        int i=0,check=0;
+        int a[]=new int[2];
+        int l=nums.length;
+        for(i=0;i<l-1;i++)
+        {
+            for(int j=i+1;j<l;j++)
+            {
+                if((nums[i]+nums[j])==target)
+                {
+                    a[0]=i;
+                    a[1]=j;
+                    check=1;
+                 break;      
+                }
+            }
+            if(check==1)
+            {
+                break;
             }
         }
-        return new int[]{-1, -1};
+         return a; 
     }
 }
